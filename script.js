@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// Define a URL do arquivo CSV
-	var url = "https://raw.githubusercontent.com/RudneyC/Rudney/main/dados.csv";
+	var url = "https://github.dev/RudneyC/tabela-dinamica-vw/blob/main/dados.csv";
 
 	// Carrega o arquivo CSV com o AJAX
 	$.get(url, function(data) {
