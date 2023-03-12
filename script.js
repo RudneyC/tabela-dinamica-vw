@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// Define a URL do arquivo CSV
-	var url = "<iframe src="https://drive.google.com/file/d/19RsD3DC0ZL2V91UfOPt-mQLNK8rqppUp/preview" width="640" height="480" allow="autoplay"></iframe>";
+	var url = "https://github.dev/RudneyC/testenovo/blob/main/data.csv";
 
 	// Carrega o arquivo CSV com o AJAX
 	$.get(url, function(data) {
