@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// Define a URL do arquivo CSV
-	var url = "https://github.dev/RudneyC/tabela-dinamica-vw/blob/main/dados.csv";
+	var url = "https://drive.google.com/file/d/19RsD3DC0ZL2V91UfOPt-mQLNK8rqppUp/view?usp=share_link";
 
 	// Carrega o arquivo CSV com o AJAX
 	$.get(url, function(data) {
