@@ -1,45 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Exemplo DataTables</title>
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://github.dev/RudneyC/testenovo/blob/main/data.csv"/>
+	<meta charset="utf-8">
+	<title>Tabela Dinâmica</title>
+	<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-    <table id="myTable" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+	<input type="file" id="fileInput" onchange="loadFile()">
+	<div id="tableContainer"></div>
 
-    <script type="text/javascript" src="jquery-3.6.4.min.js"></script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
-    <script type="text/javascript" src="papaparse.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.get("data.csv", function(data) {
-                var parsedData = Papa.parse(data, {header: true});
-                var columns = Object.keys(parsedData.data[0]);
-                var tableColumns = columns.map(function(col) {
-                    return {title: col, data: col};
-                });
-                var tableData = parsedData.data.map(function(row) {
-                    return columns.map(function(col) {
-                        return row[col];
-                    });
-                });
+	<script>
+		function loadFile() {
+			var file = document.getElementById('fileInput').files[0];
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				var data = new Uint8Array(event.target.result);
+				var workbook = XLSX.read(data, {type: 'array'});
 
-                $('#myTable').DataTable({
-                    data: tableData,
-                    columns: tableColumns
-                });
-            });
-        });
-    </script>
+				var html = XLSX.utils.sheet_to_html(workbook.Sheets[workbook.SheetNames[0]]);
+				document.getElementById('tableContainer').innerHTML = html;
+			};
+			reader.readAsArrayBuffer(file);
+		}
+	</script>
 </body>
 </html>
